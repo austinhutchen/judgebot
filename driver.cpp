@@ -8,8 +8,9 @@ int main(){
  string name;
 cout << "Enter your name below. No spaces." << endl;
 cin>>name;
-bot1.get_score(name);
+float score=bot1.get_score(name);
 
+cout << bot1.get_history(score) << endl;
 
 
 
