@@ -1,10 +1,15 @@
 #ifndef bot_h
 #define bot_h
 #include <iostream>
+#include <cmath>
 using namespace std;
 class bot {
 public:
+  int round(float d){
+  return int(floor(d+0.5));
+  }
   bot() { likeness_score = 5; }
+
   string lowercase(string input) {
     for (int x = 0; x < input.size(); x++) {
       if (input[x] >= 65 && input[x] <= 90) {
@@ -42,8 +47,7 @@ public:
         break;
       default:
         if (c == 0) {
-          cout << "Some parts of name not within proper character range."
-               << endl;
+          cout << "Some parts of name not within proper character range."<< endl;
           c++;
         }
         break;
@@ -61,9 +65,20 @@ public:
     return likeness_score;
   }
 
-  string get_history(int score) {
-    string history = "";
+  string get_history(float &score){
+    int r_score=round(score);
+    switch(r_score){
 
+
+
+
+
+    default: cout << "/ERROR/ Score is outside of effective range." << endl;
+    break;
+
+    }
+    string history = "";
+    
     return history;
   }
 
