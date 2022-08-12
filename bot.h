@@ -19,7 +19,7 @@ public:
     // end of loop
     return input;
   }
-
+//segfault here
 string randsentence(int range){
   string word="";
 long random;
@@ -85,6 +85,7 @@ return word;
     int r_score = round(score);
     switch (r_score) {
     case 0 ... 5: { // worst case scenario fate. likely a bad fate with low rand range
+      cout <<randsentence(50);
       history = "      ";
     } break;
     case 6 ... 7: { // second to worst case scenario. higher rand range
