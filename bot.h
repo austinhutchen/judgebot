@@ -1,14 +1,12 @@
 #ifndef bot_h
 #define bot_h
-#include <iostream>
 #include <cmath>
+#include <iostream>
 using namespace std;
 class bot {
 public:
-  int round(float d){
-  return int(floor(d+0.5));
-  }
-  bot() { likeness_score = 5; }
+
+  bot() { srand(time(NULL));likeness_score = 5; }
 
   string lowercase(string input) {
     for (int x = 0; x < input.size(); x++) {
@@ -22,10 +20,26 @@ public:
     return input;
   }
 
+string randsentence(int range){
+  string word="";
+long random;
+ // from 0 to upper limit of range
+// the lower the range the more reasonable the answer
+for(int i=0;i<range++;i++){
+  if(i==range/2){
+  word[i]=32;
+  }
+  else{
+random = 97+rand()%122;
+word[i]=random;
+  }
+}
+return word;
+}
+  int round(float d) { return int(floor(d + 0.5)); }
+  
   int get_score(string &name) {
-    int c = 0;
-    srand(time(NULL));
-    long random = rand() % 11; // random from 0 to 11
+    int c = 0; 
     string username = lowercase(name);
     for (int i = 0; i < name.size(); i++) {
       // play favorites with letters in name using ASCII (use lowercase function
@@ -47,7 +61,8 @@ public:
         break;
       default:
         if (c == 0) {
-          cout << "Some parts of name not within proper character range."<< endl;
+          cout << "Some parts of name not within proper character range."
+               << endl;
           c++;
         }
         break;
@@ -65,20 +80,27 @@ public:
     return likeness_score;
   }
 
-  string get_history(float &score){
-    int r_score=round(score);
-    switch(r_score){
-
-
-
-
-
-    default: cout << "/ERROR/ Score is outside of effective range." << endl;
-    break;
-
-    }
+  string get_history(float &score) {
     string history = "";
-    
+    int r_score = round(score);
+    switch (r_score) {
+    case 0 ... 5: { // worst case scenario fate. likely a bad fate with low rand range
+      history = "      ";
+    } break;
+    case 6 ... 7: { // second to worst case scenario. higher rand range
+    history="";
+      break;
+    }
+    case 8 ... 9: {
+    history="";
+      break;
+    }
+
+    default:
+      cout << "/ERROR/ Score is outside of real number range." << endl;
+      break;
+    }
+
     return history;
   }
 
