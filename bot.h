@@ -6,7 +6,7 @@ using namespace std;
 class bot {
 public:
 
-  bot() { srand(time(NULL));likeness_score = 5; }
+  bot() {srand(time(NULL));likeness_score = 5; }
 
   string lowercase(string input) {
     for (int x = 0; x < input.size(); x++) {
@@ -20,22 +20,38 @@ public:
     return input;
   }
 //segfault here
-string randsentence(int range){
-  string word="";
+
+string randword(int range){
+srand(time(NULL));
+  // this algorithm keeps choosing a few of the same numbers
+  // if the range is less than 24, the algorithm chooses to keep spaces empty
+  // memory leaks occur when the range is too large, why?
+string word;
 long random;
+bool even=false;
+if(range%2!=0){
+  even=false;
+}
+else{even=true;}
  // from 0 to upper limit of range
 // the lower the range the more reasonable the answer
-for(int i=0;i<range++;i++){
-  if(i==range/2){
+for(int i=0;i<range;i++){
+  if(i==range/2&&even==true){
+  word[i]=32;
+  }
+  else if(i==((range/2)+1)&&even==false){
   word[i]=32;
   }
   else{
-random = 97+rand()%122;
+   // is this algorithm safe? double check by checking rand range
+int range = 26 ; //(122 - 97) + 1
+int random = rand() % range + 97;
 word[i]=random;
   }
 }
 return word;
 }
+
   int round(float d) { return int(floor(d + 0.5)); }
   
   int get_score(string &name) {
@@ -61,8 +77,7 @@ return word;
         break;
       default:
         if (c == 0) {
-          cout << "Some parts of name not within proper character range."
-               << endl;
+          cout << "Some parts of name not within proper character range."<< endl;
           c++;
         }
         break;
@@ -85,15 +100,17 @@ return word;
     int r_score = round(score);
     switch (r_score) {
     case 0 ... 5: { // worst case scenario fate. likely a bad fate with low rand range
-      cout <<randsentence(50);
-      history = "      ";
+      cout <<randword(50);
+      history = "bad fate";
     } break;
     case 6 ... 7: { // second to worst case scenario. higher rand range
-    history="";
+    cout << randword(30);
+    history="somewhat bad fate";
       break;
     }
     case 8 ... 9: {
-    history="";
+      cout << randword(60);
+    history="amazing fate";
       break;
     }
 
