@@ -61,18 +61,11 @@ return word;
       // play favorites with letters in name using ASCII (use lowercase function
       // for this)
       switch (username[i]) {
-      // cases depend on lowercase ascii value in range 97-122
-      case 97 ... 100:
-        // from a to d
-        likeness_score += 0.5;
-        break;
-      case 101 ... 110:
-        likeness_score -= 0.5;
-        break;
-      case 111 ... 117:
+      // change case ranges to only two ranges
+      case 97 ... 115:
         likeness_score--;
         break;
-      case 118 ... 122:
+      case 116 ... 122:
         likeness_score++;
         break;
       default:
@@ -87,7 +80,7 @@ return word;
     }
     int length = name.size();
     if (length <= 4) {
-      likeness_score += 0.5;
+      likeness_score = likeness_score+ 0.5;
     } else {
       likeness_score--;
     }
@@ -95,21 +88,20 @@ return word;
     return likeness_score;
   }
 
-  string get_history(float &score) {
+  string get_history(int &score) {
     string history = "";
-    int r_score = round(score);
-    switch (r_score) {
+    switch (score) {
     case 0 ... 5: { // worst case scenario fate. likely a bad fate with low rand range
-      cout <<randword(50);
+      cout <<randword(50)<<endl;
       history = "bad fate";
     } break;
     case 6 ... 7: { // second to worst case scenario. higher rand range
-    cout << randword(30);
+    cout << randword(30) << endl;
     history="somewhat bad fate";
       break;
     }
     case 8 ... 9: {
-      cout << randword(60);
+      cout << randword(60)<<endl;
     history="amazing fate";
       break;
     }
@@ -123,7 +115,7 @@ return word;
   }
 
 private:
-  float likeness_score;
+  int likeness_score;
   // score evaluated from 0-10
 };
 #endif
